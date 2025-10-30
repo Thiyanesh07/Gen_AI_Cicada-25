@@ -1,0 +1,7 @@
+{
+  "name": "Farmer Query Assistant",
+  "description": "An AI-powered assistant for farmers, providing quick answers to agricultural queries, generating visuals for crops, and more.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
