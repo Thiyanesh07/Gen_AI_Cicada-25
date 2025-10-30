@@ -28,13 +28,13 @@ app.include_router(conversations.router)
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize database on startup"""
+    # Initializing database
     init_db()
 
 
 @app.get("/")
 async def root():
-    """Root endpoint"""
+    #Root endpoint
     return {
         "message": "Farmer Assistant API",
         "status": "running",

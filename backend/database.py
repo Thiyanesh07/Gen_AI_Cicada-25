@@ -8,7 +8,7 @@ user_engine = create_engine(settings.USER_DATABASE_URL)
 UserSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=user_engine)
 UserBase = declarative_base()
 
-# Training Database Engine
+# Training Database
 training_engine = create_engine(settings.TRAINING_DATABASE_URL)
 TrainingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=training_engine)
 TrainingBase = declarative_base()
