@@ -230,6 +230,54 @@ export const getNotificationStats = async (): Promise<any> => {
   return apiRequest('/api/notifications/stats');
 };
 
+// Image Search Services
+interface ImageSearchRequest {
+  query: string;
+  num_results?: number;
+  crop_context?: {
+    crop_name?: string;
+    growth_stage?: string;
+    location?: string;
+  };
+  use_rag?: boolean;
+}
+
+interface ImageResult {
+  url: string;
+  title: string;
+  snippet: string;
+  thumbnail: string;
+  width?: number;
+  height?: number;
+  source?: string;
+}
+
+interface ImageSearchResponse {
+  query: string;
+  refined_query?: string;
+  results: ImageResult[];
+  total_results: number;
+  used_rag: boolean;
+}
+
+export const searchCropImages = async (request: ImageSearchRequest): Promise<ImageSearchResponse> => {
+  return apiRequest('/api/crops/search-images', {
+    method: 'POST',
+    body: JSON.stringify(request),
+  });
+};
+
+export const searchImagesForCrop = async (
+  cropId: number,
+  request: ImageSearchRequest
+): Promise<ImageSearchResponse> => {
+  return apiRequest(`/api/crops/${cropId}/search-images`, {
+    method: 'POST',
+    body: JSON.stringify(request),
+  });
+};
+
 // Export token management
 export { getToken, setToken, removeToken };
+export type { ImageSearchRequest, ImageResult, ImageSearchResponse };
 

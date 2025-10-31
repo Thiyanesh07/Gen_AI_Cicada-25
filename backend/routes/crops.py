@@ -2,9 +2,13 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from database import get_training_db
 from models import User, CropLog
-from schemas import CropLogCreate, CropLogUpdate, CropLogResponse
+from schemas import (
+    CropLogCreate, CropLogUpdate, CropLogResponse,
+    ImageSearchRequest, ImageSearchResponse, ImageResult
+)
 from auth import get_current_user
-from typing import List
+from services.image_search_service import image_search_service
+from typing import List, Optional, Dict
 from datetime import datetime
 
 router = APIRouter(prefix="/api/crops", tags=["Crops"])
@@ -173,4 +177,126 @@ async def delete_crop_log(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error deleting crop log: {str(e)}"
+        )
+
+
+@router.post("/search-images", response_model=ImageSearchResponse)
+async def search_crop_images(
+    search_request: ImageSearchRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Search Google Images for crop-related images with RAG-enhanced query refinement
+    
+    Uses RAG to refine the search query based on crop context and past conversations
+    """
+    try:
+        # Search images with RAG enhancement
+        images = await image_search_service.search_images(
+            query=search_request.query,
+            num_results=min(search_request.num_results, 20),  # Limit to 20
+            crop_context=search_request.crop_context,
+            user_email=current_user.email,
+            use_rag=search_request.use_rag
+        )
+        
+        # Convert to response format
+        image_results = [
+            ImageResult(
+                url=img.get("url", ""),
+                title=img.get("title", ""),
+                snippet=img.get("snippet", ""),
+                thumbnail=img.get("thumbnail", img.get("url", "")),
+                width=img.get("width"),
+                height=img.get("height"),
+                source=img.get("source")
+            )
+            for img in images
+        ]
+        
+        return ImageSearchResponse(
+            query=search_request.query,
+            refined_query=None,  # Could be returned from service if needed
+            results=image_results,
+            total_results=len(image_results),
+            used_rag=search_request.use_rag
+        )
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error searching images: {str(e)}"
+        )
+
+
+@router.post("/{crop_id}/search-images", response_model=ImageSearchResponse)
+async def search_images_for_crop(
+    crop_id: int,
+    search_request: ImageSearchRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_training_db)
+):
+    """
+    Search images for a specific crop, automatically including crop context for RAG
+    
+    Automatically extracts crop information (name, growth stage, location) to enhance search
+    """
+    try:
+        # Get crop information
+        crop = db.query(CropLog)\
+            .filter(
+                CropLog.id == crop_id,
+                CropLog.user_email == current_user.email
+            ).first()
+        
+        if not crop:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Crop log not found"
+            )
+        
+        # Build crop context for RAG
+        crop_context = {
+            "crop_name": crop.crop_name,
+            "growth_stage": crop.growth_stage,
+            "location": crop.location
+        }
+        
+        # Search images with enhanced context
+        images = await image_search_service.search_images(
+            query=search_request.query,
+            num_results=min(search_request.num_results, 20),
+            crop_context=crop_context,
+            user_email=current_user.email,
+            use_rag=search_request.use_rag
+        )
+        
+        # Convert to response format
+        image_results = [
+            ImageResult(
+                url=img.get("url", ""),
+                title=img.get("title", ""),
+                snippet=img.get("snippet", ""),
+                thumbnail=img.get("thumbnail", img.get("url", "")),
+                width=img.get("width"),
+                height=img.get("height"),
+                source=img.get("source")
+            )
+            for img in images
+        ]
+        
+        return ImageSearchResponse(
+            query=search_request.query,
+            refined_query=None,
+            results=image_results,
+            total_results=len(image_results),
+            used_rag=search_request.use_rag
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error searching images for crop: {str(e)}"
         )

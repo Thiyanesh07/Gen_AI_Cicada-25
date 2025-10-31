@@ -23,6 +23,10 @@ class Settings(BaseSettings):
     OPENWEATHER_API_KEY: str = "8c48e8c7a542ef671d38a649b05144a4"
     OPENWEATHER_BASE_URL: str = "https://api.openweathermap.org/data/2.5/weather"
     
+    # Google Custom Search API (for image search)
+    GOOGLE_API_KEY: str = ""  # Optional - set in .env file
+    GOOGLE_SEARCH_ENGINE_ID: str = ""  # Optional - set in .env file
+    
     # CORS
     CORS_ORIGINS: str = '["http://localhost:3000", "http://localhost:3001"]'
     

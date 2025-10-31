@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime, date
-from typing import Optional
+from typing import Optional, List, Dict
 
 
 # User Schemas
@@ -129,3 +129,29 @@ class WeatherData(BaseModel):
     condition: str  # "Rain", "Clear", "Clouds", etc.
     description: str
     wind_speed: float
+
+
+# Image Search Schemas
+class ImageSearchRequest(BaseModel):
+    query: str
+    num_results: int = 10
+    crop_context: Optional[Dict] = None  # Optional crop info for RAG enhancement
+    use_rag: bool = True
+
+
+class ImageResult(BaseModel):
+    url: str
+    title: str
+    snippet: str
+    thumbnail: str
+    width: Optional[int] = None
+    height: Optional[int] = None
+    source: Optional[str] = None
+
+
+class ImageSearchResponse(BaseModel):
+    query: str
+    refined_query: Optional[str] = None  # RAG-refined query if used
+    results: List[ImageResult]
+    total_results: int
+    used_rag: bool = False
