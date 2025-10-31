@@ -73,9 +73,7 @@ Answer: """
                 system_prompt=self.system_prompt,
                 context=context_str,
                 question=question
-            )            python -m pip install --user faiss-cpu==1.8.0
-            python -m pip install --user sentence-transformers==2.2.2
-            python -m pip install --user langchain-huggingface==0.1.2
+            )            
             
             return response.strip()
         except Exception as e:
