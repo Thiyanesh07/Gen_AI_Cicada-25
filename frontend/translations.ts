@@ -28,7 +28,7 @@ type Translations = {
 
 export const translations: Translations = {
   en: {
-    'nav.ask': 'Ask Assistant', 'nav.visualize': 'Visualize Crops', 'nav.reminders': 'Task Reminders', 'nav.audio': 'Audio Reports', 'nav.settings': 'Settings',
+    'nav.ask': 'Ask Assistant', 'nav.visualize': 'Visualize Crops', 'nav.crops': 'My Crops', 'nav.reminders': 'Task Reminders', 'nav.notifications': 'Notifications', 'nav.settings': 'Settings',
     'app.title': "Farmer's AI",
     'login.welcome': 'Welcome Back', 'login.subtitle': 'Sign in to access the Farmer Query Assistant', 'login.google': 'Sign in with Google', 'login.github': 'Sign in with GitHub', 'login.continue': 'Or continue with', 'login.email': 'Email address', 'login.password': 'Password', 'login.signin': 'Sign in', 'login.language': 'Language',
     'quotes.0': 'The ultimate goal of farming is not the growing of crops, but the cultivation and perfection of human beings. - Masanobu Fukuoka',
@@ -47,7 +47,7 @@ export const translations: Translations = {
     'user.switchAccount': 'Switch Account', 'user.logout': 'Log Out',
   },
   es: {
-    'nav.ask': 'Preguntar al Asistente', 'nav.visualize': 'Visualizar Cultivos', 'nav.reminders': 'Recordatorios', 'nav.audio': 'Informes de Audio', 'nav.settings': 'Ajustes',
+    'nav.ask': 'Preguntar al Asistente', 'nav.visualize': 'Visualizar Cultivos', 'nav.reminders': 'Recordatorios', 'nav.notifications': 'Notificaciones', 'nav.settings': 'Ajustes',
     'app.title': 'IA del Agricultor',
     'login.welcome': 'Bienvenido de Nuevo', 'login.subtitle': 'Inicia sesión para acceder al Asistente de Consultas para Agricultores', 'login.google': 'Iniciar sesión con Google', 'login.github': 'Iniciar sesión con GitHub', 'login.continue': 'O continuar con', 'login.email': 'Correo electrónico', 'login.password': 'Contraseña', 'login.signin': 'Iniciar sesión', 'login.language': 'Idioma',
     'quotes.0': 'El objetivo último de la agricultura no es el cultivo de cosechas, sino el cultivo y la perfección de los seres humanos. - Masanobu Fukuoka',
@@ -66,7 +66,7 @@ export const translations: Translations = {
     'user.switchAccount': 'Cambiar de Cuenta', 'user.logout': 'Cerrar Sesión',
   },
   hi: {
-    'nav.ask': 'सहायक से पूछें', 'nav.visualize': 'फसलों की कल्पना करें', 'nav.reminders': 'कार्य अनुस्मारक', 'nav.audio': 'ऑडियो रिपोर्ट', 'nav.settings': 'सेटिंग्स',
+    'nav.ask': 'सहायक से पूछें', 'nav.visualize': 'फसलों की कल्पना करें', 'nav.reminders': 'कार्य अनुस्मारक', 'nav.notifications': 'सूचनाएँ', 'nav.settings': 'सेटिंग्स',
     'app.title': 'किसान का AI',
     'login.welcome': 'वापसी पर स्वागत है', 'login.subtitle': 'किसान क्वेरी सहायक तक पहुंचने के लिए साइन इन करें', 'login.google': 'Google के साथ साइन इन करें', 'login.github': 'GitHub के साथ साइन इन करें', 'login.continue': 'या इसके साथ जारी रखें', 'login.email': 'ईमेल पता', 'login.password': 'पासवर्ड', 'login.signin': 'साइन इन करें', 'login.language': 'भाषा',
     'quotes.0': 'खेती का अंतिम लक्ष्य फसलों को उगाना नहीं, बल्कि इंसानों की साधना और सिद्धि है। - मासानोबु फुकुओका',
@@ -85,7 +85,7 @@ export const translations: Translations = {
     'user.switchAccount': 'खाता बदलें', 'user.logout': 'लॉग आउट करें',
   },
   fr: {
-    'nav.ask': 'Demander à l\'Assistant', 'nav.visualize': 'Visualiser les Cultures', 'nav.reminders': 'Rappels de Tâches', 'nav.audio': 'Rapports Audio', 'nav.settings': 'Paramètres',
+    'nav.ask': 'Demander à l\'Assistant', 'nav.visualize': 'Visualiser les Cultures', 'nav.reminders': 'Rappels de Tâches', 'nav.notifications': 'Notifications', 'nav.settings': 'Paramètres',
     'app.title': 'IA de l\'Agriculteur',
     'login.welcome': 'Content de vous revoir', 'login.subtitle': 'Connectez-vous pour accéder à l\'Assistant de Requêtes pour Agriculteurs', 'login.google': 'Se connecter avec Google', 'login.github': 'Se connecter avec GitHub', 'login.continue': 'Ou continuer avec', 'login.email': 'Adresse e-mail', 'login.password': 'Mot de passe', 'login.signin': 'Se connecter', 'login.language': 'Langue',
     'quotes.0': 'Le but ultime de l\'agriculture n\'est pas la culture des plantes, mais la culture et la perfection des êtres humains. - Masanobu Fukuoka',
@@ -104,7 +104,7 @@ export const translations: Translations = {
     'user.switchAccount': 'Changer de Compte', 'user.logout': 'Se Déconnecter',
   },
   de: {
-    'nav.ask': 'Assistent fragen', 'nav.visualize': 'Pflanzen visualisieren', 'nav.reminders': 'Aufgaben-Erinnerungen', 'nav.audio': 'Audio-Berichte', 'nav.settings': 'Einstellungen',
+    'nav.ask': 'Assistent fragen', 'nav.visualize': 'Pflanzen visualisieren', 'nav.reminders': 'Aufgaben-Erinnerungen', 'nav.notifications': 'Benachrichtigungen', 'nav.settings': 'Einstellungen',
     'app.title': 'Bauern-KI',
     'login.welcome': 'Willkommen zurück', 'login.subtitle': 'Melden Sie sich an, um auf den Bauern-Anfrage-Assistenten zuzugreifen', 'login.google': 'Mit Google anmelden', 'login.github': 'Mit GitHub anmelden', 'login.continue': 'Oder fortfahren mit', 'login.email': 'E-Mail-Adresse', 'login.password': 'Passwort', 'login.signin': 'Anmelden', 'login.language': 'Sprache',
     'quotes.0': 'Das letzte Ziel der Landwirtschaft ist nicht der Anbau von Pflanzen, sondern die Kultivierung und Vervollkommnung des Menschen. - Masanobu Fukuoka',
@@ -123,7 +123,7 @@ export const translations: Translations = {
     'user.switchAccount': 'Konto wechseln', 'user.logout': 'Abmelden',
   },
   ja: {
-    'nav.ask': 'アシスタントに質問', 'nav.visualize': '作物を視覚化', 'nav.reminders': 'タスクリマインダー', 'nav.audio': '音声レポート', 'nav.settings': '設定',
+    'nav.ask': 'アシスタントに質問', 'nav.visualize': '作物を視覚化', 'nav.reminders': 'タスクリマインダー', 'nav.notifications': '通知', 'nav.settings': '設定',
     'app.title': '農家のAI',
     'login.welcome': 'おかえりなさい', 'login.subtitle': '農家クエリアシスタントにアクセスするにはサインインしてください', 'login.google': 'Googleでサインイン', 'login.github': 'GitHubでサインイン', 'login.continue': 'または以下で続行', 'login.email': 'メールアドレス', 'login.password': 'パスワード', 'login.signin': 'サインイン', 'login.language': '言語',
     'quotes.0': '農業の最終目標は作物を育てることではなく、人間の育成と完成である。- 福岡正信',
@@ -142,7 +142,7 @@ export const translations: Translations = {
     'user.switchAccount': 'アカウントを切り替える', 'user.logout': 'ログアウト',
   },
   zh: {
-    'nav.ask': '询问助手', 'nav.visualize': '可视化作物', 'nav.reminders': '任务提醒', 'nav.audio': '音频报告', 'nav.settings': '设置',
+    'nav.ask': '询问助手', 'nav.visualize': '可视化作物', 'nav.reminders': '任务提醒', 'nav.notifications': '通知', 'nav.settings': '设置',
     'app.title': '农民AI',
     'login.welcome': '欢迎回来', 'login.subtitle': '登录以访问农民查询助手', 'login.google': '使用Google登录', 'login.github': '使用GitHub登录', 'login.continue': '或继续使用', 'login.email': '电子邮件地址', 'login.password': '密码', 'login.signin': '登录', 'login.language': '语言',
     'quotes.0': '农业的最终目标不是种植作物，而是培养和完善人类。- 福冈正信',
@@ -161,7 +161,7 @@ export const translations: Translations = {
     'user.switchAccount': '切换账户', 'user.logout': '登出',
   },
   ar: {
-    'nav.ask': 'اسأل المساعد', 'nav.visualize': 'تصور المحاصيل', 'nav.reminders': 'تذكيرات المهام', 'nav.audio': 'تقارير صوتية', 'nav.settings': 'الإعدادات',
+    'nav.ask': 'اسأل المساعد', 'nav.visualize': 'تصور المحاصيل', 'nav.reminders': 'تذكيرات المهام', 'nav.notifications': 'إشعارات', 'nav.settings': 'الإعدادات',
     'app.title': 'ذكاء المزارع الاصطناعي',
     'login.welcome': 'مرحباً بعودتك', 'login.subtitle': 'سجل الدخول للوصول إلى مساعد استعلامات المزارعين', 'login.google': 'تسجيل الدخول باستخدام جوجل', 'login.github': 'تسجيل الدخول باستخدام GitHub', 'login.continue': 'أو المتابعة باستخدام', 'login.email': 'البريد الإلكتروني', 'login.password': 'كلمة المرور', 'login.signin': 'تسجيل الدخول', 'login.language': 'اللغة',
     'quotes.0': 'الهدف النهائي للزراعة ليس زراعة المحاصيل، بل زراعة البشر وإتقانهم. - ماسانobu فوكوكا',
@@ -180,7 +180,7 @@ export const translations: Translations = {
     'user.switchAccount': 'تبديل الحساب', 'user.logout': 'تسجيل الخروج',
   },
   pt: {
-    'nav.ask': 'Perguntar ao Assistente', 'nav.visualize': 'Visualizar Culturas', 'nav.reminders': 'Lembretes de Tarefas', 'nav.audio': 'Relatórios de Áudio', 'nav.settings': 'Configurações',
+    'nav.ask': 'Perguntar ao Assistente', 'nav.visualize': 'Visualizar Culturas', 'nav.reminders': 'Lembretes de Tarefas', 'nav.notifications': 'Notificações', 'nav.settings': 'Configurações',
     'app.title': 'IA do Agricultor',
     'login.welcome': 'Bem-vindo de volta', 'login.subtitle': 'Faça login para acessar o Assistente de Consultas do Agricultor', 'login.google': 'Entrar com o Google', 'login.github': 'Entrar com o GitHub', 'login.continue': 'Ou continue com', 'login.email': 'Endereço de e-mail', 'login.password': 'Senha', 'login.signin': 'Entrar', 'login.language': 'Idioma',
     'quotes.0': 'O objetivo final da agricultura não é o cultivo de colheitas, mas o cultivo e o aperfeiçoamento dos seres humanos. - Masanobu Fukuoka',
@@ -199,7 +199,7 @@ export const translations: Translations = {
     'user.switchAccount': 'Mudar de Conta', 'user.logout': 'Sair',
   },
   bn: {
-    'nav.ask': 'সহকারীকে জিজ্ঞাসা করুন', 'nav.visualize': 'ফসল দেখুন', 'nav.reminders': 'কাজের অনুস্মারক', 'nav.audio': 'অডিও প্রতিবেদন', 'nav.settings': 'সেটিংস',
+    'nav.ask': 'সহকারীকে জিজ্ঞাসা করুন', 'nav.visualize': 'ফসল দেখুন', 'nav.reminders': 'কাজের অনুস্মারক', 'nav.notifications': 'বিজ্ঞপ্তি', 'nav.settings': 'সেটিংস',
     'app.title': 'কৃষকের এআই',
     'login.welcome': 'আবার স্বাগতম', 'login.subtitle': 'কৃষক জিজ্ঞাসা সহকারীতে প্রবেশ করতে সাইন ইন করুন', 'login.google': 'Google দিয়ে সাইন ইন করুন', 'login.github': 'GitHub দিয়ে সাইন ইন করুন', 'login.continue': 'অথবা দিয়ে চালিয়ে যান', 'login.email': 'ইমেল ঠিকানা', 'login.password': 'পাসওয়ার্ড', 'login.signin': 'সাইন ইন করুন', 'login.language': 'ভাষা',
     'quotes.0': 'চাষের চূড়ান্ত লক্ষ্য ফসল ফলানো নয়, মানুষের চাষ এবং পরিপূর্ণতা। - মাসানোবু ফুকুওকা',
@@ -218,7 +218,7 @@ export const translations: Translations = {
     'user.switchAccount': 'অ্যাকাউন্ট পরিবর্তন করুন', 'user.logout': 'লগ আউট',
   },
   ta: {
-    'nav.ask': 'உதவியாளரிடம் கேளுங்கள்', 'nav.visualize': 'பயிர்களைக் காட்சிப்படுத்து', 'nav.reminders': 'பணி நினைவூட்டல்கள்', 'nav.audio': 'ஒலி அறிக்கைகள்', 'nav.settings': 'அமைப்புகள்',
+    'nav.ask': 'உதவியாளரிடம் கேளுங்கள்', 'nav.visualize': 'பயிர்களைக் காட்சிப்படுத்து', 'nav.reminders': 'பணி நினைவூட்டல்கள்', 'nav.notifications': 'அறிவிப்புகள்', 'nav.settings': 'அமைப்புகள்',
     'app.title': 'விவசாயியின் AI',
     'login.welcome': 'மீண்டும் வருக', 'login.subtitle': 'விவசாயி வினவல் உதவியாளரை அணுக உள்நுழையவும்', 'login.google': 'Google மூலம் உள்நுழைக', 'login.github': 'GitHub மூலம் உள்நுழைக', 'login.continue': 'அல்லது தொடரவும்', 'login.email': 'மின்னஞ்சல் முகவரி', 'login.password': 'கடவுச்சொல்', 'login.signin': 'உள்நுழைக', 'login.language': 'மொழி',
     'quotes.0': 'விவசாயத்தின் இறுதி நோக்கம் பயிர்களை வளர்ப்பது அல்ல, மனிதர்களைப் பயிரிடுவதும் hoàn thiệnப்படுத்துவதும் ஆகும். - மசானோபு ஃபுக்குவோக்கா',
@@ -237,7 +237,7 @@ export const translations: Translations = {
     'user.switchAccount': 'கணக்கை மாற்று', 'user.logout': 'வெளியேறு',
   },
   te: {
-    'nav.ask': 'సహాయకుడిని అడగండి', 'nav.visualize': 'పంటలను దృశ్యమానం చేయండి', 'nav.reminders': 'పని రిమైండర్లు', 'nav.audio': 'ఆడియో నివేదికలు', 'nav.settings': 'సెట్టింగ్‌లు',
+    'nav.ask': 'సహాయకుడిని అడగండి', 'nav.visualize': 'పంటలను దృశ్యమానం చేయండి', 'nav.reminders': 'పని రిమైండర్లు', 'nav.notifications': 'నోటిఫికేషన్‌లు', 'nav.settings': 'సెట్టింగ్‌లు',
     'app.title': 'రైతు AI',
     'login.welcome': 'తిరిగి స్వాగతం', 'login.subtitle': 'రైతు ప్రశ్న సహాయకుడిని యాక్సెస్ చేయడానికి సైన్ ఇన్ చేయండి', 'login.google': 'Googleతో సైన్ ఇన్ చేయండి', 'login.github': 'GitHubతో సైన్ ఇన్ చేయండి', 'login.continue': 'లేదా దీనితో కొనసాగండి', 'login.email': 'ఇమెయిల్ చిరునామా', 'login.password': 'పాస్‌వర్డ్', 'login.signin': 'సైన్ ఇన్ చేయండి', 'login.language': 'భాష',
     'quotes.0': 'వ్యవసాయం యొక్క అంతిమ లక్ష్యం పంటలను పండించడం కాదు, మానవులను పండించడం మరియు పరిపూర్ణం చేయడం. - మసనోబు ఫుకుఓకా',
@@ -256,7 +256,7 @@ export const translations: Translations = {
     'user.switchAccount': 'ఖాతాను మార్చండి', 'user.logout': 'లాగ్ అవుట్',
   },
   mr: {
-    'nav.ask': 'सहाय्यकाला विचारा', 'nav.visualize': 'पिकांची कल्पना करा', 'nav.reminders': 'कार्य स्मरणपत्रे', 'nav.audio': 'ऑडिओ अहवाल', 'nav.settings': 'सेटिंग्ज',
+    'nav.ask': 'सहाय्यकाला विचारा', 'nav.visualize': 'पिकांची कल्पना करा', 'nav.reminders': 'कार्य स्मरणपत्रे', 'nav.notifications': 'सूचना', 'nav.settings': 'सेटिंग्ज',
     'app.title': 'शेतकरी AI',
     'login.welcome': 'पुन्हा स्वागत आहे', 'login.subtitle': 'शेतकरी क्वेरी सहाय्यकामध्ये प्रवेश करण्यासाठी साइन इन करा', 'login.google': 'Google सह साइन इन करा', 'login.github': 'GitHub सह साइन इन करा', 'login.continue': 'किंवा यासह सुरू ठेवा', 'login.email': 'ईमेल पत्ता', 'login.password': 'पासवर्ड', 'login.signin': 'साइन इन करा', 'login.language': 'भाषा',
     'quotes.0': 'शेतीचे अंतिम ध्येय पिके वाढवणे नाही, तर मानवाची लागवड आणि परिपूर्णता आहे. - मसानाबो फुकुओका',
@@ -275,7 +275,7 @@ export const translations: Translations = {
     'user.switchAccount': 'खाते बदला', 'user.logout': 'लॉग आउट करा',
   },
   gu: {
-    'nav.ask': 'સહાયકને પૂછો', 'nav.visualize': 'પાકની કલ્પના કરો', 'nav.reminders': 'કાર્ય રિમાઇન્ડર્સ', 'nav.audio': 'ઑડિઓ રિપોર્ટ્સ', 'nav.settings': 'સેટિંગ્સ',
+    'nav.ask': 'સહાયકને પૂછો', 'nav.visualize': 'પાકની કલ્પના કરો', 'nav.reminders': 'કાર્ય રિમાઇન્ડર્સ', 'nav.notifications': 'સૂચનાઓ', 'nav.settings': 'સેટિંગ્સ',
     'app.title': 'ખેડૂત AI',
     'login.welcome': 'ફરી સ્વાગત છે', 'login.subtitle': 'ખેડૂત ક્વેરી સહાયકને ઍક્సెస్ કરવા માટે સાઇન ઇન કરો', 'login.google': 'Google સાથે સાઇન ઇન કરો', 'login.github': 'GitHub સાથે સાઇન ઇન કરો', 'login.continue': 'અથવા આની સાથે ચાલુ રાખો', 'login.email': 'ઇમેઇલ સરનામું', 'login.password': 'પાસવર્ડ', 'login.signin': 'સાઇન ઇન કરો', 'login.language': 'ભાષા',
     'quotes.0': 'ખેતીનો અંતિમ ધ્યેય પાક ઉગાડવાનો નથી, પરંતુ માનવીની ખેતી અને પૂર્ણતા છે. - માસાનોબુ ફુકુઓકા',
@@ -294,7 +294,7 @@ export const translations: Translations = {
     'user.switchAccount': 'એકાઉન્ટ બદલો', 'user.logout': 'લૉગ આઉટ કરો',
   },
   kn: {
-    'nav.ask': 'ಸಹಾಯಕನನ್ನು ಕೇಳಿ', 'nav.visualize': 'ಬೆಳೆಗಳನ್ನು ದೃಶ್ಯೀಕರಿಸಿ', 'nav.reminders': 'ಕಾರ್ಯ ಜ್ಞಾಪನೆಗಳು', 'nav.audio': 'ಆಡಿಯೋ ವರದಿಗಳು', 'nav.settings': 'ಸೆಟ್ಟಿಂಗ್‌ಗಳು',
+    'nav.ask': 'ಸಹಾಯಕನನ್ನು ಕೇಳಿ', 'nav.visualize': 'ಬೆಳೆಗಳನ್ನು ದೃಶ್ಯೀಕರಿಸಿ', 'nav.reminders': 'ಕಾರ್ಯ ಜ್ಞಾಪನೆಗಳು', 'nav.notifications': 'ಅಧಿಸೂಚನೆಗಳು', 'nav.settings': 'ಸೆಟ್ಟಿಂಗ್‌ಗಳು',
     'app.title': 'ರೈತರ AI',
     'login.welcome': 'ಮತ್ತೆ ಸ್ವಾಗತ', 'login.subtitle': 'ರೈತ ಪ್ರಶ್ನೆ ಸಹಾಯಕನಿಗೆ ಪ್ರವೇಶಿಸಲು ಸೈನ್ ಇన్ ಮಾಡಿ', 'login.google': 'Google ನೊಂದಿಗೆ ಸೈನ್ ಇన్ ಮಾಡಿ', 'login.github': 'GitHub ನೊಂದಿಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ', 'login.continue': 'ಅಥವಾ ಇದರೊಂದಿಗೆ ಮುಂದುವರಿಸಿ', 'login.email': 'ಇಮೇల్ ವಿಳಾಸ', 'login.password': 'ಪಾಸ್‌ವರ್ಡ್', 'login.signin': 'ಸೈನ್ ಇన్ ಮಾಡಿ', 'login.language': 'ಭಾಷೆ',
     'quotes.0': 'ಕೃಷಿಯ ಅಂತಿಮ ಗುರಿ ಬೆಳೆಗಳನ್ನು ಬೆಳೆಯುವುದಲ್ಲ, ಮಾನವರನ್ನು ಬೆಳೆಸುವುದು ಮತ್ತು ಪರಿಪೂರ್ಣಗೊಳಿಸುವುದು. - ಮಸನೋಬು ಫುಕುವೋಕಾ',
@@ -313,7 +313,7 @@ export const translations: Translations = {
     'user.switchAccount': 'ಖಾತೆಯನ್ನು ಬದಲಾಯಿಸಿ', 'user.logout': 'ಲಾಗ್ ಔಟ್',
   },
   ml: {
-    'nav.ask': 'സഹായിയോട് ചോദിക്കുക', 'nav.visualize': 'വിളകൾ കാണുക', 'nav.reminders': 'പ്രവർത്തന ഓർമ്മപ്പെടുത്തലുകൾ', 'nav.audio': 'ഓഡിയോ റിപ്പോർട്ടുകൾ', 'nav.settings': 'ക്രമീകരണങ്ങൾ',
+    'nav.ask': 'സഹായിയോട് ചോദിക്കുക', 'nav.visualize': 'വിളകൾ കാണുക', 'nav.reminders': 'പ്രവർത്തന ഓർമ്മപ്പെടുത്തലുകൾ', 'nav.notifications': 'അറിയിപ്പുകൾ', 'nav.settings': 'ക്രമീകരണങ്ങൾ',
     'app.title': 'കർഷകൻ്റെ AI',
     'login.welcome': 'വീണ്ടും സ്വാഗതം', 'login.subtitle': 'കർഷക ചോദ്യ സഹായിയിലേക്ക് പ്രവേശിക്കാൻ സൈൻ ഇൻ ചെയ്യുക', 'login.google': 'Google ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക', 'login.github': 'GitHub ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക', 'login.continue': 'അല്ലെങ്കിൽ ഇത് ഉപയോഗിച്ച് തുടരുക', 'login.email': 'ഇമെയിൽ വിലാസം', 'login.password': 'പാസ്‌വേഡ്', 'login.signin': 'സൈൻ ഇൻ ചെയ്യുക', 'login.language': 'ഭാഷ',
     'quotes.0': 'കൃഷിയുടെ ആത്യന്തിക ലക്ഷ്യം വിളകൾ വളർത്തുകയല്ല, മനുഷ്യരെ കൃഷി ചെയ്യുകയും പരിപൂർണ്ണമാക്കുകയും ചെയ്യുക എന്നതാണ്. - മസനോബു ഫുക്കുവോക്ക',
@@ -332,7 +332,7 @@ export const translations: Translations = {
     'user.switchAccount': 'അക്കൗണ്ട് മാറുക', 'user.logout': 'ലോഗ് ഔട്ട്',
   },
   pa: {
-    'nav.ask': 'ਸਹਾਇਕ ਨੂੰ ਪੁੱਛੋ', 'nav.visualize': 'ਫਸਲਾਂ ਦੀ ਕਲਪਨਾ ਕਰੋ', 'nav.reminders': 'ਕੰਮ ਦੇ ਰੀਮਾਈਂਡਰ', 'nav.audio': 'ਆਡੀਓ ਰਿਪੋਰਟਾਂ', 'nav.settings': 'ਸੈਟਿੰਗਾਂ',
+    'nav.ask': 'ਸਹਾਇਕ ਨੂੰ ਪੁੱਛੋ', 'nav.visualize': 'ਫਸਲਾਂ ਦੀ ਕਲਪਨਾ ਕਰੋ', 'nav.reminders': 'ਕੰਮ ਦੇ ਰੀਮਾਈਂਡਰ', 'nav.notifications': 'ਸੂਚਨਾਵਾਂ', 'nav.settings': 'ਸੈਟਿੰਗਾਂ',
     'app.title': 'ਕਿਸਾਨ ਦਾ AI',
     'login.welcome': 'ਜੀ ਆਇਆਂ ਨੂੰ', 'login.subtitle': 'ਕਿਸਾਨ ਸਵਾਲ ਸਹਾਇਕ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ', 'login.google': 'Google ਨਾਲ ਸਾਈਨ ਇਨ ਕਰੋ', 'login.github': 'GitHub ਨਾਲ ਸਾਈਨ ਇਨ ਕਰੋ', 'login.continue': 'ਜਾਂ ਇਸ ਨਾਲ ਜਾਰੀ ਰੱਖੋ', 'login.email': 'ਈਮੇਲ ਪਤਾ', 'login.password': 'ਪਾਸਵਰਡ', 'login.signin': 'ਸਾਈਨ ਇਨ ਕਰੋ', 'login.language': 'ਭਾਸ਼ਾ',
     'quotes.0': 'ਖੇਤੀ ਦਾ ਅੰਤਮ ਟੀਚਾ ਫਸਲਾਂ ਉਗਾਉਣਾ ਨਹੀਂ, ਬਲਕਿ ਮਨੁੱਖਾਂ ਦੀ ਕਾਸ਼ਤ ਅਤੇ ਸੰਪੂਰਨਤਾ ਹੈ। - ਮਸਾਨੋਬੂ ਫੁਕੂਓਕਾ',

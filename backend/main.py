@@ -2,13 +2,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config import settings
 from database import init_db
-from routes import auth, chat, conversations
+from routes import auth, chat, conversations, crops, notifications
 
 # Initialize FastAPI app
 app = FastAPI(
     title="Farmer Assistant API",
-    description="Backend API for Farmer Query Assistant with local LLM",
-    version="1.0.0"
+    description="Backend API for Farmer Query Assistant with local LLM and Weather-Based Crop Notifications",
+    version="2.0.0"
 )
 
 # Configure CORS
@@ -24,6 +24,8 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(chat.router)
 app.include_router(conversations.router)
+app.include_router(crops.router)
+app.include_router(notifications.router)
 
 
 @app.on_event("startup")

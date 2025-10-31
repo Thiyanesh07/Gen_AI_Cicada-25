@@ -165,5 +165,71 @@ export const extractTextFromImage = async (image: { mimeType: string; data: stri
   throw new Error('Text extraction is not implemented in the local backend yet.');
 };
 
+// Crop Management Services
+export const getCrops = async (skip: number = 0, limit: number = 100): Promise<any> => {
+  return apiRequest(`/api/crops?skip=${skip}&limit=${limit}`);
+};
+
+export const getCrop = async (cropId: number): Promise<any> => {
+  return apiRequest(`/api/crops/${cropId}`);
+};
+
+export const createCrop = async (cropData: {
+  crop_name: string;
+  location: string;
+  latitude?: number | null;
+  longitude?: number | null;
+  date_planted: string;
+  growth_stage?: string;
+  notes?: string | null;
+}): Promise<any> => {
+  return apiRequest('/api/crops', {
+    method: 'POST',
+    body: JSON.stringify(cropData),
+  });
+};
+
+export const updateCrop = async (cropId: number, cropData: any): Promise<any> => {
+  return apiRequest(`/api/crops/${cropId}`, {
+    method: 'PUT',
+    body: JSON.stringify(cropData),
+  });
+};
+
+export const deleteCrop = async (cropId: number): Promise<any> => {
+  return apiRequest(`/api/crops/${cropId}`, {
+    method: 'DELETE',
+  });
+};
+
+// Notification Services
+export const getNotifications = async (unreadOnly: boolean = false): Promise<any> => {
+  return apiRequest(`/api/notifications?unread_only=${unreadOnly}`);
+};
+
+export const markNotificationRead = async (notificationId: number, isRead: boolean = true): Promise<any> => {
+  return apiRequest(`/api/notifications/${notificationId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ is_read: isRead }),
+  });
+};
+
+export const deleteNotification = async (notificationId: number): Promise<any> => {
+  return apiRequest(`/api/notifications/${notificationId}`, {
+    method: 'DELETE',
+  });
+};
+
+export const generateNotifications = async (): Promise<any> => {
+  return apiRequest('/api/notifications/generate', {
+    method: 'POST',
+  });
+};
+
+export const getNotificationStats = async (): Promise<any> => {
+  return apiRequest('/api/notifications/stats');
+};
+
 // Export token management
 export { getToken, setToken, removeToken };
+

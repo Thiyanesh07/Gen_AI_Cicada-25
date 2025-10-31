@@ -1,7 +1,17 @@
 import { GoogleGenAI, Chat, Modality, GenerateContentResponse, FunctionDeclaration, Type } from "@google/genai";
 
+// Check if API key exists, use mock mode if not
+const API_KEY = process.env.API_KEY || '';
+const USE_MOCK = !API_KEY || API_KEY === 'mock';
+
 // Assume process.env.API_KEY is available
-const getGenAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+const getGenAI = () => {
+  if (USE_MOCK) {
+    console.warn('⚠️ No API key found - using mock mode for Gemini services');
+    throw new Error('Mock mode - API not initialized');
+  }
+  return new GoogleGenAI({ apiKey: API_KEY });
+};
 
 const setReminderFunctionDeclaration: FunctionDeclaration = {
   name: 'setReminder',
@@ -20,15 +30,24 @@ const setReminderFunctionDeclaration: FunctionDeclaration = {
 
 
 // Chat Service
-export const createChat = (): Chat => {
-  const ai = getGenAI();
-  return ai.chats.create({
-    model: 'gemini-2.5-flash',
-    config: {
-      systemInstruction: "You are a helpful and knowledgeable Farmer Query Assistant. Your goal is to provide concise, practical advice for farmers. You are an expert in sustainable farming; proactively offer advice on how to reduce waste, save money by suggesting efficient alternatives, and improve soil health. When a user indicates they are starting a task like planting, proactively use the setReminder tool to create a helpful, automated schedule for them from planting to harvest.",
-      tools: [{ functionDeclarations: [setReminderFunctionDeclaration] }],
-    },
-  });
+export const createChat = (): Chat | null => {
+  if (USE_MOCK) {
+    console.log('🎭 Mock chat created - responses will be simulated');
+    return null;
+  }
+  try {
+    const ai = getGenAI();
+    return ai.chats.create({
+      model: 'gemini-2.5-flash',
+      config: {
+        systemInstruction: "You are a helpful and knowledgeable Farmer Query Assistant. Your goal is to provide concise, practical advice for farmers. You are an expert in sustainable farming; proactively offer advice on how to reduce waste, save money by suggesting efficient alternatives, and improve soil health. When a user indicates they are starting a task like planting, proactively use the setReminder tool to create a helpful, automated schedule for them from planting to harvest.",
+        tools: [{ functionDeclarations: [setReminderFunctionDeclaration] }],
+      },
+    });
+  } catch (err) {
+    console.error('Failed to create chat:', err);
+    return null;
+  }
 };
 
 export const streamChatMessage = async (

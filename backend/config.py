@@ -19,6 +19,10 @@ class Settings(BaseSettings):
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "llama3.2"
     
+    # OpenWeatherMap API
+    OPENWEATHER_API_KEY: str = "8c48e8c7a542ef671d38a649b05144a4"
+    OPENWEATHER_BASE_URL: str = "https://api.openweathermap.org/data/2.5/weather"
+    
     # CORS
     CORS_ORIGINS: str = '["http://localhost:3000", "http://localhost:3001"]'
     

@@ -10,7 +10,10 @@ const App: React.FC = () => {
   const [theme, setTheme] = useState<Theme>('light');
   const [fontSize, setFontSize] = useState<FontSize>('default');
 
+  console.log('🎨 App component rendering, isLoggedIn:', isLoggedIn);
+
   useEffect(() => {
+    console.log('🌓 Theme effect running, theme:', theme);
     const root = window.document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');

@@ -27,14 +27,12 @@
     }
     body {
         background-color: var(--color-brand-bg);
-        background-image: url('https://source.unsplash.com/random/1920x1080/?sunny,farm,field,garden,landscape,nature');
+        /* Temporarily disable background images for debugging */
+        /* background-image: url('https://source.unsplash.com/random/1920x1080/?sunny,farm,field,garden,landscape,nature'); */
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        transition: background-image 0.5s ease-in-out, background-color 0.3s ease-in-out;
-    }
-    html.dark body {
-        background-image: url('https://source.unsplash.com/random/1920x1080/?forest,night,stars,moon,aurora,dark');
+        transition: background-color 0.3s ease-in-out;
     }
   </style>
   <script>

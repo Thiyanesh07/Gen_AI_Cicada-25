@@ -46,7 +46,7 @@ async def export_conversations_for_training(
         .order_by(Conversation.timestamp.asc())\
         .all()
     
-    # Format for training (JSON Lines format)
+    # Format for training (JSON)
     training_data = [
         {
             "instruction": conv.question,

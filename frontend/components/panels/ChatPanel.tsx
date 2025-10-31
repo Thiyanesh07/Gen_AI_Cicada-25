@@ -59,6 +59,7 @@ const ChatPanel: React.FC<ChatPanelProps> = ({ onAddReminder }) => {
   const [isExtractingText, setIsExtractingText] = useState(false);
   const [attachedImage, setAttachedImage] = useState<{ MimeType: string; data: string; preview: string } | null>(null);
   const [isRecording, setIsRecording] = useState(false);
+  const [isMockMode, setIsMockMode] = useState(false);
   const { t, speechCode } = useLanguage();
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -66,8 +67,26 @@ const ChatPanel: React.FC<ChatPanelProps> = ({ onAddReminder }) => {
   const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
-    setChat(createChat());
-    setMessages([{ role: ChatRole.GEMINI, text: t('chat.greeting') }]);
+    try {
+      const chatInstance = createChat();
+      if (!chatInstance) {
+        setIsMockMode(true);
+        setMessages([{ 
+          role: ChatRole.GEMINI, 
+          text: '⚠️ Mock Mode Active\n\n' + t('chat.greeting') + '\n\n(Note: AI responses are not available without an API key. This is a demonstration mode.)' 
+        }]);
+      } else {
+        setChat(chatInstance);
+        setMessages([{ role: ChatRole.GEMINI, text: t('chat.greeting') }]);
+      }
+    } catch (err) {
+      console.error('Error initializing chat:', err);
+      setIsMockMode(true);
+      setMessages([{ 
+        role: ChatRole.GEMINI, 
+        text: '⚠️ Mock Mode Active\n\n' + t('chat.greeting') + '\n\n(Note: AI responses are not available without an API key.)' 
+      }]);
+    }
 
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (SpeechRecognition) {

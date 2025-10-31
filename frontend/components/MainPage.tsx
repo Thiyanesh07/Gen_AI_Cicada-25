@@ -4,8 +4,9 @@ import { NAV_ITEMS } from '../constants';
 import ChatPanel from './panels/ChatPanel';
 import ImagePanel from './panels/ImagePanel';
 import RemindersPanel from './panels/RemindersPanel';
-import AudioPanel from './panels/AudioPanel';
 import SettingsPanel from './panels/SettingsPanel';
+import { CropPanel } from './panels/CropPanel';
+import { NotificationWidget } from './NotificationWidget';
 import AppIcon from './Icon';
 import ThemeToggle from './ThemeToggle';
 import type { Theme, FontSize } from '../App';
@@ -58,10 +59,12 @@ const MainPage: React.FC<MainPageProps> = ({ theme, onToggleTheme, fontSize, onS
         return <ImagePanel />;
       case 'reminders':
         return <RemindersPanel reminders={reminders} onDelete={deleteReminder} onAdd={addReminder} />;
-      case 'audio':
-        return <AudioPanel />;
+      case 'notifications':
+        return <NotificationWidget refreshInterval={300000} maxDisplay={10} />;
       case 'settings':
         return <SettingsPanel fontSize={fontSize} onSetFontSize={onSetFontSize} />;
+      case 'crops':
+        return <CropPanel />;
       default:
         return <ChatPanel onAddReminder={addReminder} />;
     }
@@ -110,6 +113,15 @@ const MainPage: React.FC<MainPageProps> = ({ theme, onToggleTheme, fontSize, onS
             )}
           </button>
         </div>
+        
+        {/* Demo Mode Banner */}
+        <div className="mx-4 mt-4 mb-2 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+          <p className="text-xs text-yellow-800 dark:text-yellow-200">
+            <strong>🎭 Demo Mode</strong><br/>
+            Using mock authentication. Backend features require the server to be running.
+          </p>
+        </div>
+        
         <nav className="flex-1 p-4 space-y-2">
             {NAV_ITEMS.map((item) => (
                 <NavLink 
@@ -156,8 +168,10 @@ const MainPage: React.FC<MainPageProps> = ({ theme, onToggleTheme, fontSize, onS
             <h2 className="text-xl font-semibold text-brand-text-primary dark:text-gray-200">{activeNavItem ? t(activeNavItem.labelKey) : ''}</h2>
             <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           </header>
-          <div className="flex-1 overflow-y-auto">
-            {renderPanel()}
+          <div className="flex-1 overflow-y-auto flex gap-4 p-4">
+            <div className="flex-1 overflow-y-auto">
+              {renderPanel()}
+            </div>
           </div>
       </main>
     </div>

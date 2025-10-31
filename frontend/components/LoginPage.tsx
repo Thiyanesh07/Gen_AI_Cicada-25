@@ -4,7 +4,9 @@ import ThemeToggle from './ThemeToggle';
 import type { Theme } from '../App';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LANGUAGES, SupportedLanguage } from '../translations';
-import { login, register } from '../services/apiService';
+// Toggle between real API and mock API for testing
+// import { login, register } from '../services/apiService'; // Real API (needs backend)
+import { login, register } from '../services/mockApiService'; // Mock API (frontend only)
 
 interface LoginPageProps {
   onLogin: () => void;
