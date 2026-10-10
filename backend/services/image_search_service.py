@@ -39,7 +39,7 @@ class ImageSearchService:
         self.base_url = "https://www.googleapis.com/customsearch/v1"
         
         if not self.api_key or not self.search_engine_id:
-            print("⚠️ Warning: GOOGLE_API_KEY or GOOGLE_SEARCH_ENGINE_ID not configured")
+            print("[WARNING] GOOGLE_API_KEY or GOOGLE_SEARCH_ENGINE_ID not configured")
             print("   Image search will use fallback method")
             print("   To enable full image search, set these in your .env file:")
             print("   GOOGLE_API_KEY=your_api_key")
@@ -173,7 +173,7 @@ Return ONLY the search query text, nothing else, no quotes."""
                     crop_context=crop_context,
                     user_email=user_email
                 )
-                print(f"🔍 RAG-refined query: '{search_query}' (original: '{query}')")
+                print(f"[INFO] RAG-refined query: '{search_query}' (original: '{query}')")
             else:
                 search_query = farming_enhanced_query
             
@@ -240,7 +240,7 @@ Return ONLY the search query text, nothing else, no quotes."""
                             "source": item.get("displayLink", "")
                         })
                 
-                print(f"✅ Found {len(images)} farming-related images for query: '{farming_query}'")
+                print(f"[OK] Found {len(images)} farming-related images for query: '{farming_query}'")
                 return images
                 
         except httpx.HTTPError as e:
@@ -265,7 +265,7 @@ Return ONLY the search query text, nothing else, no quotes."""
             
             # For now, return a placeholder structure
             # In production, you could use libraries like `duckduckgo-search` or `serpapi`
-            print("⚠️ Using fallback image search (Google API not configured)")
+            print("[WARNING] Using fallback image search (Google API not configured)")
             print(f"   To enable full image search, set GOOGLE_API_KEY and GOOGLE_SEARCH_ENGINE_ID")
             print(f"   Query would be: '{query}'")
             

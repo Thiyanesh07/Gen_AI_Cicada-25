@@ -1,14 +1,77 @@
 import { GoogleGenAI, Chat, Modality, GenerateContentResponse, FunctionDeclaration, Type } from "@google/genai";
 
-// Check if API key exists, use mock mode if not
-const API_KEY = process.env.API_KEY || '';
-const USE_MOCK = !API_KEY || API_KEY === 'mock';
+const getRuntimeApiKey = (): string => {
+  const env = typeof import.meta !== 'undefined' ? import.meta.env : undefined;
+  const viteKey = env ? (env.VITE_GEMINI_API_KEY || env.VITE_API_KEY || env.GEMINI_API_KEY || env.API_KEY || '') : '';
+  const processKey = typeof process !== 'undefined' ? (process.env.GEMINI_API_KEY || process.env.API_KEY || '') : '';
+  return (viteKey || processKey || '').trim();
+};
 
-// Assume process.env.API_KEY is available
+const API_KEY = getRuntimeApiKey();
+const USE_MOCK = !API_KEY || API_KEY === 'mock' || API_KEY === 'demo';
+
+const createMockResponse = (message: string): string => {
+  const lower = message.toLowerCase();
+
+  if (lower.includes('when') && lower.includes('plant') && lower.includes('corn')) {
+    return 'Corn is usually planted when soil temperatures are consistently above 15°C and the danger of frost has passed. In most regions, this is late spring, but local soil and rainfall patterns matter.';
+  }
+
+  if (lower.includes('water') || lower.includes('irrig')) {
+    return 'For irrigation, check soil moisture first and water early in the morning. A deep, infrequent watering cycle is usually better than light daily watering.';
+  }
+
+  if (lower.includes('pest') || lower.includes('disease') || lower.includes('fungus')) {
+    return 'Inspect the affected leaves and stems, remove infected material, and avoid overhead watering. Neem oil or a crop-safe treatment can help if the problem is confirmed.';
+  }
+
+  if (lower.includes('soil') || lower.includes('fertil')) {
+    return 'Healthy soil starts with organic matter and balanced nutrients. Add compost, test pH, and avoid over-applying nitrogen where the crop does not need it.';
+  }
+
+  if (lower.includes('plant') || lower.includes('seed')) {
+    return 'Planting timing matters: prepare the bed, ensure proper spacing, and keep the soil moist but not waterlogged during germination.';
+  }
+
+  if (lower.includes('harvest') || lower.includes('yield')) {
+    return 'For better yield, monitor moisture stress, prune diseased growth, and keep nutrient levels stable as the crop approaches maturity.';
+  }
+
+  return `This is a local demo reply for: "${message}". Add a valid Gemini API key in your environment to enable live AI responses from the project’s real model.`;
+};
+
+const createMockChat = (): Chat => {
+  const mockSendMessageStream = async ({ message }: { message: string | Array<any> }) => {
+    const text = Array.isArray(message)
+      ? message
+          .map((part) => {
+            if (!part || typeof part !== 'object') return '';
+            if ('text' in part && typeof part.text === 'string') return part.text;
+            if ('functionResponse' in part && part.functionResponse && typeof part.functionResponse.response === 'object') {
+              return JSON.stringify(part.functionResponse.response);
+            }
+            return '';
+          })
+          .join(' ')
+      : String(message || '');
+
+    async function* stream() {
+      const response = createMockResponse(text || 'farm question');
+      yield { text: response };
+    }
+
+    return stream();
+  };
+
+  return {
+    sendMessageStream: mockSendMessageStream,
+  } as unknown as Chat;
+};
+
 const getGenAI = () => {
   if (USE_MOCK) {
-    console.warn('⚠️ No API key found - using mock mode for Gemini services');
-    throw new Error('Mock mode - API not initialized');
+    console.warn('⚠️ No Gemini API key found - using local mock mode for chat responses');
+    return null;
   }
   return new GoogleGenAI({ apiKey: API_KEY });
 };
@@ -32,11 +95,14 @@ const setReminderFunctionDeclaration: FunctionDeclaration = {
 // Chat Service
 export const createChat = (): Chat | null => {
   if (USE_MOCK) {
-    console.log('🎭 Mock chat created - responses will be simulated');
-    return null;
+    console.log('🎭 Mock chat created - responses will be simulated locally');
+    return createMockChat();
   }
   try {
     const ai = getGenAI();
+    if (!ai) {
+      return createMockChat();
+    }
     return ai.chats.create({
       model: 'gemini-2.5-flash',
       config: {
@@ -46,7 +112,7 @@ export const createChat = (): Chat | null => {
     });
   } catch (err) {
     console.error('Failed to create chat:', err);
-    return null;
+    return createMockChat();
   }
 };
 

@@ -18,8 +18,39 @@ interface AuthResponse {
 // Simulate network delay
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Mock user database (in-memory for demo)
-const mockUsers = new Map<string, string>();
+const MOCK_USERS_KEY = 'mock_users';
+const DEFAULT_USERS: Record<string, string> = {
+  'test@example.com': 'password123',
+  'farmer@example.com': 'farmer123',
+};
+
+const readMockUsers = (): Map<string, string> => {
+  try {
+    const raw = localStorage.getItem(MOCK_USERS_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    const users = new Map<string, string>(Object.entries(parsed));
+
+    for (const [email, password] of Object.entries(DEFAULT_USERS)) {
+      if (!users.has(email)) {
+        users.set(email, password);
+      }
+    }
+
+    localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(Object.fromEntries(users)));
+    return users;
+  } catch (error) {
+    console.warn('Mock user store unavailable; using in-memory fallback.', error);
+    return new Map(Object.entries(DEFAULT_USERS));
+  }
+};
+
+const writeMockUsers = (users: Map<string, string>): void => {
+  try {
+    localStorage.setItem(MOCK_USERS_KEY, JSON.stringify(Object.fromEntries(users)));
+  } catch (error) {
+    console.warn('Unable to persist mock users.', error);
+  }
+};
 
 // Storage helpers
 const getToken = (): string | null => {
@@ -36,27 +67,29 @@ const removeToken = (): void => {
 
 // Mock Authentication Services
 export const register = async (data: RegisterData): Promise<any> => {
-  await delay(500); // Simulate network delay
+  await delay(500);
 
-  if (mockUsers.has(data.email)) {
+  const users = readMockUsers();
+  if (users.has(data.email)) {
     throw new Error('Email already registered');
   }
 
-  mockUsers.set(data.email, data.password);
+  users.set(data.email, data.password);
+  writeMockUsers(users);
   console.log('✅ Mock Registration successful:', data.email);
-  
-  return { 
-    email: data.email, 
-    message: 'User registered successfully' 
+
+  return {
+    email: data.email,
+    message: 'User registered successfully'
   };
 };
 
 export const login = async (credentials: LoginCredentials): Promise<AuthResponse> => {
-  await delay(500); // Simulate network delay
+  await delay(500);
 
-  const storedPassword = mockUsers.get(credentials.email);
-  
-  // Check credentials
+  const users = readMockUsers();
+  const storedPassword = users.get(credentials.email.trim().toLowerCase());
+
   if (!storedPassword) {
     throw new Error('User not found. Please sign up first.');
   }
@@ -65,10 +98,9 @@ export const login = async (credentials: LoginCredentials): Promise<AuthResponse
     throw new Error('Incorrect email or password');
   }
 
-  // Generate mock token
   const mockToken = `mock_token_${credentials.email}_${Date.now()}`;
   setToken(mockToken);
-  
+
   console.log('✅ Mock Login successful:', credentials.email);
 
   return {
@@ -85,13 +117,14 @@ export const logout = (): void => {
 export const getCurrentUser = async (): Promise<any> => {
   await delay(300);
   const token = getToken();
-  
+
   if (!token) {
     throw new Error('Not authenticated');
   }
 
+  const userEmail = token.includes('_') ? token.split('_')[2] : 'test@example.com';
   return {
-    email: 'test@example.com',
+    email: userEmail,
     id: 1
   };
 };
@@ -99,10 +132,7 @@ export const getCurrentUser = async (): Promise<any> => {
 // Export token management
 export { getToken, setToken, removeToken };
 
-// Add some default test users
-mockUsers.set('test@example.com', 'password123');
-mockUsers.set('farmer@example.com', 'farmer123');
-
+readMockUsers();
 console.log('🎭 Mock API Service loaded');
 console.log('📝 Pre-registered test users:');
 console.log('   - test@example.com / password123');

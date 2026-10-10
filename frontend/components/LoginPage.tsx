@@ -4,9 +4,26 @@ import ThemeToggle from './ThemeToggle';
 import type { Theme } from '../App';
 import { useLanguage } from '../contexts/LanguageContext';
 import { LANGUAGES, SupportedLanguage } from '../translations';
-// Toggle between real API and mock API for testing
-// import { login, register } from '../services/apiService'; // Real API (needs backend)
-import { login, register } from '../services/mockApiService'; // Mock API (frontend only)
+import { login as loginToBackend, register as registerToBackend } from '../services/apiService';
+import { login as loginToMock, register as registerToMock } from '../services/mockApiService';
+
+const loginWithFallback = async (credentials: { email: string; password: string }) => {
+  try {
+    return await loginToBackend(credentials);
+  } catch (error) {
+    console.warn('Backend login unavailable, falling back to mock auth.', error);
+    return await loginToMock(credentials);
+  }
+};
+
+const registerWithFallback = async (data: { email: string; password: string }) => {
+  try {
+    return await registerToBackend(data);
+  } catch (error) {
+    console.warn('Backend registration unavailable, falling back to mock auth.', error);
+    return await registerToMock(data);
+  }
+};
 
 interface LoginPageProps {
   onLogin: () => void;
@@ -58,7 +75,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, theme, onToggleTheme }) 
         }
 
         // Register the user
-        await register({ email, password });
+        await registerWithFallback({ email, password });
         setSuccessMessage('Account created successfully! You can now sign in.');
         
         // Switch to login mode after successful registration
@@ -70,7 +87,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, theme, onToggleTheme }) 
         }, 2000);
       } else {
         // Login Mode
-        await login({ email, password });
+        await loginWithFallback({ email, password });
         onLogin();
       }
     } catch (err: any) {

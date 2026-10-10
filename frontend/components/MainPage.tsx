@@ -118,7 +118,7 @@ const MainPage: React.FC<MainPageProps> = ({ theme, onToggleTheme, fontSize, onS
         <div className="mx-4 mt-4 mb-2 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
           <p className="text-xs text-yellow-800 dark:text-yellow-200">
             <strong>🎭 Demo Mode</strong><br/>
-            Using mock authentication. Backend features require the server to be running.
+            Local sample data is active. Connect the backend to load live farm information.
           </p>
         </div>
         

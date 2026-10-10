@@ -29,10 +29,7 @@ class VectorStoreService:
         """
         self.embedding_model_name = embedding_model
         self.vector_dim = vector_dim
-        
-        # Initialize embedding model
-        print(f"Loading embedding model: {embedding_model}")
-        self.embedding_model = SentenceTransformer(embedding_model)
+        self.embedding_model = None
         
         # Initialize FAISS index
         self.index = faiss.IndexFlatL2(vector_dim)  # L2 distance for similarity
@@ -51,6 +48,12 @@ class VectorStoreService:
         # Load existing index if available
         self.load_index()
     
+    def _ensure_embedding_model(self):
+        """Load the sentence-transformer model on first use to avoid blocking startup."""
+        if self.embedding_model is None:
+            print(f"Loading embedding model: {self.embedding_model_name}")
+            self.embedding_model = SentenceTransformer(self.embedding_model_name)
+
     def create_embeddings(self, texts: List[str]) -> np.ndarray:
         """
         Create embeddings for a list of texts
@@ -61,6 +64,7 @@ class VectorStoreService:
         Returns:
             numpy array of embeddings
         """
+        self._ensure_embedding_model()
         embeddings = self.embedding_model.encode(texts, convert_to_numpy=True)
         return embeddings
     
@@ -268,9 +272,9 @@ class VectorStoreService:
             with open(self.metadata_path, 'wb') as f:
                 pickle.dump(self.metadata, f)
             
-            print(f"✅ Vector store saved: {self.index.ntotal} vectors")
+            print(f"[OK] Vector store saved: {self.index.ntotal} vectors")
         except Exception as e:
-            print(f"❌ Error saving vector store: {str(e)}")
+            print(f"[ERROR] Error saving vector store: {str(e)}")
     
     def load_index(self):
         """Load FAISS index and metadata from disk"""
@@ -283,11 +287,11 @@ class VectorStoreService:
                 with open(self.metadata_path, 'rb') as f:
                     self.metadata = pickle.load(f)
                 
-                print(f"✅ Vector store loaded: {self.index.ntotal} vectors")
+                print(f"[OK] Vector store loaded: {self.index.ntotal} vectors")
             else:
-                print("ℹ️ No existing vector store found, starting fresh")
+                print("[INFO] No existing vector store found, starting fresh")
         except Exception as e:
-            print(f"❌ Error loading vector store: {str(e)}")
+            print(f"[ERROR] Error loading vector store: {str(e)}")
             # Reset to empty state
             self.index = faiss.IndexFlatL2(self.vector_dim)
             self.metadata = []

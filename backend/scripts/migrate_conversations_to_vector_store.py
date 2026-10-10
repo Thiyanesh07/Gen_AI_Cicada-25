@@ -21,7 +21,7 @@ def migrate_conversations():
     """
     Migrate all existing conversations from SQL database to FAISS vector store
     """
-    print("🚀 Starting conversation migration to vector store...")
+    print("[INFO] Starting conversation migration to vector store...")
     
     # Create database connection
     engine = create_engine(settings.TRAINING_DATABASE_URL)
@@ -33,10 +33,10 @@ def migrate_conversations():
         conversations = db.query(Conversation).all()
         
         if not conversations:
-            print("ℹ️ No conversations found in database")
+            print("[INFO] No conversations found in database")
             return
         
-        print(f"📊 Found {len(conversations)} conversations to migrate")
+        print(f"[INFO] Found {len(conversations)} conversations to migrate")
         
         # Add each conversation to vector store
         success_count = 0
@@ -53,26 +53,26 @@ def migrate_conversations():
                 success_count += 1
                 
                 if success_count % 10 == 0:
-                    print(f"✅ Migrated {success_count}/{len(conversations)} conversations...")
+                    print(f"[OK] Migrated {success_count}/{len(conversations)} conversations...")
             
             except Exception as e:
-                print(f"❌ Error migrating conversation {convo.id}: {str(e)}")
+                print(f"[ERROR] Error migrating conversation {convo.id}: {str(e)}")
                 error_count += 1
         
-        print(f"\n🎉 Migration complete!")
-        print(f"   ✅ Successfully migrated: {success_count}")
-        print(f"   ❌ Errors: {error_count}")
-        print(f"   📊 Total vectors in store: {vector_store_service.index.ntotal}")
+        print(f"\n[MIGRATION COMPLETE]")
+        print(f"   [OK] Successfully migrated: {success_count}")
+        print(f"   [ERROR] Errors: {error_count}")
+        print(f"   [INFO] Total vectors in store: {vector_store_service.index.ntotal}")
         
         # Show stats
         stats = vector_store_service.get_stats()
-        print(f"\n📈 Vector Store Stats:")
+        print(f"\n[STATS] Vector Store Stats:")
         print(f"   Total conversations: {stats['total_conversations']}")
         print(f"   Total users: {stats['total_users']}")
         print(f"   Embedding model: {stats['embedding_model']}")
         
     except Exception as e:
-        print(f"❌ Migration failed: {str(e)}")
+        print(f"[ERROR] Migration failed: {str(e)}")
         raise
     
     finally:

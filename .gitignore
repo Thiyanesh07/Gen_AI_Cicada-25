@@ -1,0 +1,21 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python environments and generated files
+.venv/
+__pycache__/
+*.py[cod]
+*.db
+*.log
+backend/*-stdout.txt
+backend/*-stderr.txt
+backend/pip-*.txt
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+
+# Local vector store data
+backend/vector_store/

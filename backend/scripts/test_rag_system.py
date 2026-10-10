@@ -14,11 +14,11 @@ from services.vector_store_service import vector_store_service
 
 
 def test_rag_system():
-    print("🧪 Testing RAG System with FAISS Vector Store\n")
+    print("[TEST] Testing RAG System with FAISS Vector Store\n")
     print("=" * 60)
     
     # Test 1: Add sample conversations
-    print("\n1️⃣ Adding sample conversations...")
+    print("\n[1/5] Adding sample conversations...")
     
     test_conversations = [
         {
@@ -44,10 +44,10 @@ def test_rag_system():
             question=convo["question"],
             response=convo["response"]
         )
-        print(f"   ✅ Added: {convo['question'][:50]}...")
+        print(f"   [OK] Added: {convo['question'][:50]}...")
     
     # Test 2: Search for similar conversations
-    print("\n2️⃣ Testing semantic search...")
+    print("\n[2/5] Testing semantic search...")
     
     test_queries = [
         "watering my tomato plants",
@@ -56,7 +56,7 @@ def test_rag_system():
     ]
     
     for query in test_queries:
-        print(f"\n   🔍 Query: '{query}'")
+        print(f"\n   [QUERY] '{query}'")
         results = vector_store_service.search_similar_conversations(
             query=query,
             user_email="test@farmer.com",
@@ -71,7 +71,7 @@ def test_rag_system():
             print("      No results found")
     
     # Test 3: Get RAG context
-    print("\n3️⃣ Testing RAG context retrieval...")
+    print("\n[3/5] Testing RAG context retrieval...")
     
     query = "How should I care for my crops?"
     context = vector_store_service.get_relevant_context(
@@ -85,16 +85,16 @@ def test_rag_system():
     print("   " + "\n   ".join(context.split("\n")))
     
     # Test 4: Get statistics
-    print("\n4️⃣ Vector Store Statistics...")
+    print("\n[4/5] Vector Store Statistics...")
     
     stats = vector_store_service.get_stats()
-    print(f"\n   📊 Total Conversations: {stats['total_conversations']}")
-    print(f"   👥 Total Users: {stats['total_users']}")
-    print(f"   🤖 Embedding Model: {stats['embedding_model']}")
-    print(f"   📐 Vector Dimension: {stats['vector_dimension']}")
+    print(f"\n   [INFO] Total Conversations: {stats['total_conversations']}")
+    print(f"   [INFO] Total Users: {stats['total_users']}")
+    print(f"   [INFO] Embedding Model: {stats['embedding_model']}")
+    print(f"   [INFO] Vector Dimension: {stats['vector_dimension']}")
     
     # Test 5: User history summary
-    print("\n5️⃣ User History Summary...")
+    print("\n[5/5] User History Summary...")
     
     summary = vector_store_service.get_user_history_summary(
         user_email="test@farmer.com",
@@ -103,9 +103,9 @@ def test_rag_system():
     print(f"\n{summary}")
     
     print("\n" + "=" * 60)
-    print("✅ RAG System Test Complete!\n")
-    print("💡 Your RAG system is working correctly!")
-    print("📝 Next steps:")
+    print("[OK] RAG System Test Complete!\n")
+    print("[NOTE] Your RAG system is working correctly!")
+    print("[NEXT STEPS]:")
     print("   1. Start the backend server: python main.py")
     print("   2. Send a chat message via API")
     print("   3. The RAG system will automatically retrieve relevant context")
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     try:
         test_rag_system()
     except Exception as e:
-        print(f"\n❌ Error: {str(e)}")
+        print(f"\n[ERROR] Error: {str(e)}")
         print("\nMake sure you have installed all dependencies:")
         print("   pip install faiss-cpu sentence-transformers langchain-huggingface")
         sys.exit(1)

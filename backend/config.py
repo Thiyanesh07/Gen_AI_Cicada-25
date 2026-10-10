@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     OLLAMA_MODEL: str = "llama3.2"
     
     # OpenWeatherMap API
-    OPENWEATHER_API_KEY: str = "8c48e8c7a542ef671d38a649b05144a4"
+    OPENWEATHER_API_KEY: str = ""
     OPENWEATHER_BASE_URL: str = "https://api.openweathermap.org/data/2.5/weather"
     
     # Google Custom Search API (for image search)
@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     GOOGLE_SEARCH_ENGINE_ID: str = ""  # Optional - set in .env file
     
     # CORS
-    CORS_ORIGINS: str = '["http://localhost:3000", "http://localhost:3001"]'
+    CORS_ORIGINS: str = '["http://localhost:3000", "http://localhost:3001", "http://localhost:5173", "http://localhost:5174", "http://127.0.0.1:5173", "http://127.0.0.1:5174"]'
     
     @property
     def cors_origins_list(self) -> List[str]:
